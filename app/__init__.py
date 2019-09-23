@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from config import config_options
 from app import app
+from flask_sqlalchemy import SQLAlchemy
 
 
 bootstrap = Bootstrap()
