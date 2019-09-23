@@ -3,7 +3,7 @@ import os
 
 class Config:
     BASE_URL = 'http://quotes.stormconsultancy.co.uk/random.json'        
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = 'lkjhgfdsa'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:psql@localhost/bloggy'
 
 
