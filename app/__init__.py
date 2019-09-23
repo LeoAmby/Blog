@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+login_manager = login_manager()
 
 # from app import views
 
