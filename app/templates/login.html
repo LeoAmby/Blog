@@ -14,7 +14,7 @@
                 {{ message }}
             </div>
             {% endfor %}
-            <h3 class="text-center">Login</h3>
+            <button type="submit" class="text-center">Login</button>
             {{wtf.quick_form(loginForm)}}
             <p>Don't have an account? <a href= "{{url_for('auth.register')}}">Subscribe here</a></p>
         </div>

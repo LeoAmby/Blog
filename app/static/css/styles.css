@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(192, 193, 194);
+}
+#navy {
+    background-color: red;
+    /* color: black; */
+}
+#navy a {
+    color:black;
+}
+
+#top {
+    background-color: black;
+}
+
+#header>img {
+    height:150px;
+
+}
+
+#sidebar {
+    background-image:url('/static/images/blog.webp')
+}
