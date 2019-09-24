@@ -9,7 +9,7 @@ from ..models import User
 class subscriptionForm(FlaskForm):
     email = StringField('Your Email Address', validators = [Required(), Email()])
     username = StringField('Enter your username', validators = [Required()])
-    password = PasswordField('Password', validators = [Required(), EqualTo('passwords must match')])
+    password = PasswordField('Password', validators = [Required(), EqualTo('password_confirm')])
     password_confirm = PasswordField('Confirm Passwords', validators = [Required()])
     submit = SubmitField('Subscribe')
 
@@ -26,4 +26,4 @@ class loginForm(FlaskForm):
     email = StringField('Your Email Address', validators = [Required(), Email()])
     password = PasswordField('Password', validators = [Required()])
     remember = BooleanField('Remember me')
-    submit = SubmitField('Sign In')
+    submit = SubmitField('Login')

@@ -6,3 +6,66 @@
     <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
     {%endif%}
   </ul>
+
+  <link href="https://fonts.googleapis.com/css?family=Cute+Font|Turret+Road&display=swap" rel="stylesheet">
+        
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" id="header">
+
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+  <nav class="mb-1 navbar navbar-expand-lg navbar-light info-color">
+          <a href="{{ url_for('auth.index') }}" class="navbar-item">HOME</a>
+          
+          
+          
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+            aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                  {% if not current_user.is_authenticated %}
+                  <a href ="{{ url_for('auth.register') }}" class="navbar-item">
+                  <i class="signup"></i>SIGN-UP</a>
+                  {% endif %}
+              </li>
+
+              <li class="nav-item">
+                      {% if not current_user.is_authenticated %}
+              
+                      <a href ="{{ url_for('auth.login') }}" class= "navebar-item">
+                      <i class="login"></i> LOGIN</a>  
+                      {% endif %}
+                      </li>                 
+                  
+
+                      
+              <li class="nav-item">
+                  {% if current_user.is_authenticated %}
+                  <a href ="{{url_for('main.new_post') }}" class = "navbar-item">
+                          <i class="user_account"></i> NEW POSTS
+                          
+                        </a>
+                <a href ="{{url_for('main.profile',name = current_user.name) }}" class = "navbar-item">
+                  <i class="user_account"></i> PROFILE
+                  <span class="sr-only">(current)</span>
+                </a> 
+                {% endif %}
+                  
+              </li>
+              <li class="nav-item">
+                      {% if current_user.is_authenticated %}
+                <a href="{{ url_for('main.index') }}" class="navbar-item">                 
+                  <i class="fab fa-instagram"></i> LOGOUT</a>
+                  {% endif%}
+              </li>
+              
+            </ul>
+          </div>
+        </nav>

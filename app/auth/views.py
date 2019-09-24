@@ -6,9 +6,14 @@ from .forms import subscriptionForm, loginForm
 from .. import db
 
 
+@auth.route('/')
+def index():
+    # posts = Post.query.all()
+    return render_template('index.html')
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    login_form = LoginForm()
+    login_form = loginForm()
     if login_form.validate_on_submit():
         user = User.query.filter_by(email = login_form.email.data).first()
         if user is not None and user.verify_password(login_form.password.data):
@@ -16,7 +21,7 @@ def login():
             return redirect(request.args.get('next') or url_for('main.index'))
             flash('Invalid username of Password')
     title = 'New User? Subscribe Here'    
-    return render_template('auth/login.html', LoginForm = LoginForm, title=title)
+    return render_template('login.html', loginForm =login_form, title=title)
 
 
 
@@ -29,7 +34,7 @@ def register():
         db.session.commit()
         return redirect(url_for('auth.login'))
         title = 'New Account'
-    return render_template('auth/register.html', subscriptionForm = form)
+    return render_template('register.html', subscriptionForm = form)
 
 @auth.route('/logout')
 @login_required
