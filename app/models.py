@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import login_manager
 
 @login_manager.user_loader
-def losd_user(user_id):
+def load_user(user_id):
     return User.query.get(int(user_id))
 
 
@@ -17,13 +17,9 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(100))
 
-    # @property
-    # def password(self):
-    #     raise AttributeError('You cannot read the password attribute')
-                
-    # @password.setter
-    # def password(self, password):
-    #     self.password = generate_password_hash(password)
+    def password(self, password):
+        password_hash = generate_password_hash(password)
+        self.password = password_hash
     
 
     def verify_password(self, password):
