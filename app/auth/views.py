@@ -7,19 +7,13 @@ from .. import db
 from flask_sqlalchemy import sqlalchemy
 from werkzeug import check_password_hash
 
-@auth.route('/')
-def index():
-    # posts = Post.query.all()
-    return render_template('index.html')
-
-
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = loginForm()
     if login_form.validate_on_submit():
         user = User.query.filter_by(email = login_form.email.data).first()
-        if user is not None and check_password_hash(user.password,login_form.password.data):
+        if user is not None and user.verify_password(login_form.password.data):
             login_user(user, login_form.remember.data)
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username of Password')
