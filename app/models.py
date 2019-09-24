@@ -29,9 +29,17 @@ class User(UserMixin, db.Model):
         return f'User {self.username}'
 
 
-class Tale:
-    def __init__(self, id, author, quote, url):
-        self.id = id
-        self.author = author
-        self.quote = quote
-        self.url = url
+class Tale(db.Model):
+    __table__ = 'tales'
+    id = db.Column(db.Integer, primary_key = True)
+    author = db.Column(db.String(255), unique = True)
+    blog = db.Column(db.String(255))
+
+
+    @classmethod
+    def get_tales(cls,id):
+        blogs = Tale.query.order_by(tale_id=id).desc().all()
+        return blogs
+
+    def __repr__(self):
+        return f'Tale {self.blog_content}'
