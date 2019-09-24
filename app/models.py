@@ -8,12 +8,6 @@ from . import login_manager
 def losd_user(user_id):
     return User.query.get(int(user_id))
 
-class Tale:
-    def __init__(self, id, author, quote, url):
-        self.id = id
-        self.author = author
-        self.quote = quote
-        self.url = url
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -33,7 +27,15 @@ class User(UserMixin, db.Model):
     
 
     def verify_password(self, password):
-        return check_password_hash(self.password, password)
+        return password(self.password, password)
     
     def __repr__(self):
         return f'User {self.username}'
+
+
+class Tale:
+    def __init__(self, id, author, quote, url):
+        self.id = id
+        self.author = author
+        self.quote = quote
+        self.url = url
