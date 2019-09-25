@@ -8,7 +8,6 @@ from ..requests import random_quotes
 
 
 @main.route('/', methods = ['GET', 'POST'])
-@login_required
 def index():
     quotes = random_quotes()
     return render_template('index.html', quotes = quotes)
@@ -19,7 +18,7 @@ def new_tale():
     form = CreateBlog()
     if form.validate_on_submit():
         print(form.title.data)
-        tale = Tale(title =form.title.data, blog=form.blog.data, author=current_user.name)
+        tale = Tale(title =form.title.data, blog=form.content.data, author=current_user.name)
         db.session.add(tale)
         db.session.commit()
         flash('Your Blog-Tale has been created!', 'success')

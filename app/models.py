@@ -33,7 +33,7 @@ class Tale(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(255))
     author = db.Column(db.String(255), unique = True)
-    blog = db.Column(db.String(255))
+    blog = db.Column(db.Text, nullable = False)
 
 
     @classmethod

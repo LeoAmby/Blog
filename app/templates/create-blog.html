@@ -28,16 +28,16 @@
             </div>
             
             <div class="form-group">
-                {{ form.blog.label(class="form-control-label")}}
-                {% if form.blog.errors %}
-                    {{ form.blog(class="form-control form-control-lg is-invisible")}}
+                {{ form.content.label(class="form-control-label")}}
+                {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invisible")}}
                     <div class="invalid-feedback">
-                        {% for error in form.blog.errors %}
+                        {% for error in form.content.errors %}
                             <span>{{error}}</span>
                         {%endfor %}
                     </div>
                 {% else %}
-                    {{form.blog(class="form-control form-control-lg")}}
+                    {{form.content(class="form-control form-control-lg")}}
                 {% endif %}
             </div>
         

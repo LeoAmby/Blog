@@ -18,10 +18,25 @@ body {
     height:150px;
 
 }
+.b {
+    background-image:url('/static/images/b.png'); 
+}
 
+.l {
+    background-image:url('/static/images/l.png');
+}
+
+.o {
+    background-image:url('/static/images/o.png');
+}
+
+.g {
+    background-image:url('/static/images/g.png');
+}
 #sidebar {
-    background-image:url('/static/images/blog.jpg');
-    width: 350px;
+    background-image:url('/static/images/340.png');
+    width: 200px;
+    height:400px;
 }
 
 #quotes {
