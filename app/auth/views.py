@@ -18,7 +18,7 @@ def login():
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username of Password')
     title = 'New User? Subscribe Here'    
-    return render_template('login.html', loginForm =login_form, title=title)
+    return render_template('login.html', loginForm=login_form, title=title)
 
 
 

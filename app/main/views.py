@@ -13,7 +13,7 @@ def index():
     quotes = random_quotes()
     return render_template('index.html', quotes = quotes)
 
-@main.route('')
+@main.route('/tale/new', methods=['GET', 'POST'])
 @login_required
 def new_tale():
     form = CreateBlog()
