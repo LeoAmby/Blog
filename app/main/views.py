@@ -1,6 +1,9 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from . import main
-from flask_login import login_required
+from .. import db
+from app.models import Tale
+from .forms import CreateBlog
+from flask_login import login_required, current_user
 from ..requests import random_quotes
 
 
@@ -11,3 +14,14 @@ def index():
     return render_template('index.html', quotes = quotes)
 
 @main.route('')
+@login_required
+def new_tale():
+    form = CreateBlog()
+    if form.validate_on_submit():
+        print(form.title.data)
+        tale = Tale(title =form.title.data, blog=form.blog.data, author=current_user.name)
+        db.session.add(tale)
+        db.session.commit()
+        flash('Your Blog-Tale has been created!', 'success')
+        return redirect(url_for('main.index'))
+    return render_template('create-blog.html', title='New_Tale', form=form)

@@ -32,6 +32,7 @@ class User(UserMixin, db.Model):
 class Tale(db.Model):
     __table__ = 'tales'
     id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(255))
     author = db.Column(db.String(255), unique = True)
     blog = db.Column(db.String(255))
 
