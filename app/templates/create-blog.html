@@ -40,7 +40,19 @@
                     {{form.content(class="form-control form-control-lg")}}
                 {% endif %}
             </div>
-        
+            <div class="form-group">
+                {{ form.author.label(class="form-control-label")}}
+                {% if form.author.errors %}
+                    {{ form.author(class="form-control form-control-lg is-invisible")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.authot.errors %}
+                            <span>{{error}}</span>
+                        {%endfor %}
+                    </div>
+                {% else %}
+                    {{form.author(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
             
         </fieldset>
         <div class="form-group">

@@ -18,6 +18,12 @@ body {
     height:150px;
 
 }
+#sidebar {
+    background-color:black;
+}
+#blog {
+    background-color:black;
+}
 .b {
     background-image:url('/static/images/b.png'); 
 }
@@ -33,11 +39,11 @@ body {
 .g {
     background-image:url('/static/images/g.png');
 }
-#sidebar {
+/* #sidebar {
     background-image:url('/static/images/340.png');
     width: 200px;
     height:400px;
-}
+} */
 
 #quotes {
     background-color: black;

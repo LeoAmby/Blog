@@ -2,7 +2,7 @@ from flask import render_template, abort, request, redirect, url_for, flash
 from . import main
 from .. import db
 from app.models import Tale, User
-from .forms import CreateBlog
+from .forms import CreateBlog, UpdateProfile
 from flask_login import login_required, current_user
 from ..requests import random_quotes
 
@@ -10,7 +10,8 @@ from ..requests import random_quotes
 @main.route('/', methods = ['GET', 'POST'])
 def index():
     quotes = random_quotes()
-    return render_template('index.html', quotes = quotes)
+    tales = Tale.query.all()
+    return render_template('index.html', quotes = quotes, tales=tales)
 
 @main.route('/tale/new', methods=['GET', 'POST'])
 @login_required
@@ -28,8 +29,29 @@ def new_tale():
 @main.route('/profile/<name>')
 @login_required
 def profile(name):
-    user = User.query.filter_by(name = name).first()
+    user = User.query.filter_by(username = name).first()
 
     if user is None:
         abort(404)
-    return render_template('profile/profile.html', user=user)
+    return render_template('profile.html', user=user)
+
+
+@main.route('/user/<name>/update',methods = ['Get', 'POST'])
+@login_required
+def update_profile(name):
+    user = User.query.filter_by(username = name).first()
+    if user is None:
+        abort(404)
+
+    form = UpdateProfile()
+    
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+
+
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('main.profile', username=user.name))
+
+    return render_template('profile/update.html', form = form)

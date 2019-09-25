@@ -51,10 +51,10 @@
           <i class="user_account"></i> NEW TALE
           
         </a>
-        <a href="" class="navbar-item">
+        <a href ="{{url_for('main.profile', name = current_user.username)}}" class = "navbar-item">
           <i class="user_account"></i> PROFILE
           <span class="sr-only">(current)</span>
-        </a>
+        </a> 
         {% endif %}
 
       </li>
