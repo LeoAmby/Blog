@@ -1,13 +1,13 @@
 {% extends 'base.html'%}
 {% block content%}
-
+<link href="https://fonts.googleapis.com/css?family=Rajdhani|Ropa+Sans|Unna&display=swap" rel="stylesheet">
 <div class="container">
     <div class="row">
         <div class="col-md-2" id="sidebar">
             
         </div>
         <div class="col-md-8"></div>
-        <div class="col-md-2">
+        <div class="col-md-2" id="quotes">
                 <h1>Random Quotes</h1>
                 <p>{{quotes.quote}}</p>
                 <p>By: {{quotes.author}}</p>

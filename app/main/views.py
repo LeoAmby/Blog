@@ -1,7 +1,7 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, abort, request, redirect, url_for, flash
 from . import main
 from .. import db
-from app.models import Tale
+from app.models import Tale, User
 from .forms import CreateBlog
 from flask_login import login_required, current_user
 from ..requests import random_quotes
@@ -25,3 +25,12 @@ def new_tale():
         flash('Your Blog-Tale has been created!', 'success')
         return redirect(url_for('main.index'))
     return render_template('create-blog.html', title='New_Tale', form=form)
+
+@main.route('/profile/<name>')
+@login_required
+def profile(name):
+    user = User.query.filter_by(name = name).first()
+
+    if user is None:
+        abort(404)
+    return render_template('profile/profile.html', user=user)
